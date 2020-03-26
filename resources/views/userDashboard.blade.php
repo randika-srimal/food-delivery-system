@@ -12,7 +12,7 @@
     @endif
     <div class="row">
         <div class="col-lg-7">
-            <input id="search-input" placeholder="Search by area to find packs near" class="form-control">
+            <input id="search-input" placeholder="Search by location to find packs near you" class="form-control">
             <br />
             <div class="text-center" id="spinner">
                 <i class="fa fa-3x fa-spinner fa-spin"></i>
