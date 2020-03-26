@@ -14,7 +14,12 @@
         <div class="col-lg-7">
             <input id="search-input" placeholder="Search by area to find packs near" class="form-control">
             <br />
-            <div class="alert alert-info d-none" id="select-pack-alert">Click on the pack you want.</div>
+            <div class="text-center" id="spinner">
+                <i class="fa fa-3x fa-spinner fa-spin"></i>
+                <p>Searching...</p>
+            </div>
+            <div class="alert alert-warning" id="no-packs-warning">No Packs :(.</div>
+            <div class="alert alert-info" id="select-pack-alert">Click on the pack you want.</div>
             <div class="card-columns" id="card-columns">
             </div>
         </div>

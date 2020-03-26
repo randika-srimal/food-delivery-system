@@ -1,4 +1,8 @@
 $(function() {
+    $("#spinner").hide();
+    $("#no-packs-warning").hide();
+    $("#select-pack-alert").hide();
+
     $(document).on("click", ".card", function() {
         $("#pack_id").val($(this).attr("pack-id"));
     });
@@ -20,17 +24,22 @@ $(function() {
     $("#search-input").autocomplete({
         source: JSON.parse(availableTags),
         select: function(event, ui) {
+            $("#card-columns").empty();
+            $("#select-pack-alert").hide();
+            $("#spinner").show();
             $("#area_name").val(ui.item.value);
             $.get("packs/area?area=" + ui.item.value, function(packs) {
+                $("#spinner").hide();
                 if (packs.length > 0) {
-                    $("#select-pack-alert").removeClass("d-none");
+                    $("#no-packs-warning").hide();
+                    $("#select-pack-alert").show();
                 } else {
-                    $("#select-pack-alert").addClass("d-none");
+                    $("#no-packs-warning").show();
+                    $("#select-pack-alert").hide();
                 }
                 packs.sort(function(a, b) {
                     return a.price - b.price;
                 });
-                $("#card-columns").empty();
                 var cards = "";
                 packs.forEach(pack => {
                     cards +=
@@ -62,6 +71,7 @@ $(function() {
 
                 $("#card-columns").append(cards);
             }).fail(function() {
+                $("#spinner").hide();
                 alert("error");
             });
         }

@@ -32,6 +32,7 @@ class SocialController extends Controller
             $user = User::create([
                 'name'     => $getInfo->name,
                 'username'     => $getInfo->email,
+                'password' => bcrypt('$f4DsaH&*kajKK2'),
                 'provider' => $provider,
                 'provider_id' => $getInfo->id
             ]);
