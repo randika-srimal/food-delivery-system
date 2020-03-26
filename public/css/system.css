@@ -1,0 +1,23 @@
+.pack {
+    cursor: pointer;
+    box-shadow: 0 5px 5px rgba(41, 38, 38, 0.8);
+}
+
+.pack:hover {
+    box-shadow: 0 5px 5px rgba(20, 20, 20, 0.5);
+}
+
+#search-input {
+    height: 45px;
+    font-size: 23px;
+    box-shadow: 1px 1px #cec3c3;
+}
+
+#agent-packs-wrapper {
+    max-height: 250px;
+    overflow-y: scroll;
+}
+
+.swal2-html-container{
+    white-space: pre-wrap;
+}
