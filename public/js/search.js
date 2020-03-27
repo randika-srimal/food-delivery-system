@@ -44,7 +44,7 @@ $(function() {
                     packs.forEach(pack => {
                         var card = "";
                         card +=
-                            '<div class="card text-dark bg-default pack" style="width: 18rem;">';
+                            '<div class="card text-dark bg-default pack">';
                         card +=
                             '<a href="/images/flyers/' +
                             pack.file_name +
