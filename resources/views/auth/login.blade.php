@@ -12,10 +12,10 @@
     @endif
     <div class="row justify-content-center">
         <div class="col-md-5 mb-2">
-            <div class="card text-dark bg-warning">
+            <div class="card text-light bg-dark">
                 <div class="card-header">Customer Login</div>
                 <div class="card-body">
-                    <div class="alert alert-info" role="alert">
+                    <div class="alert alert-secondary" role="alert">
                         ඔබට අත්‍යවශ්‍ය ද්‍රව්‍ය පාර්සලයක් අවශ්‍යනම් ඔබේ ෆේස්බුක් ගිණුම හරහා මෙයට ඇතුල්වී ඔබ ප්‍රදේශයේ
                         ආහාර මලු බෙදා දීමේ කණ්ඩායමට ඔබට අවශ්‍ය ආහාර පාර්සලය ඇණවුම් කල හැක.
                     </div>
@@ -25,10 +25,10 @@
             </div>
         </div>
         <div class="col-md-5">
-            <div class="card text-dark bg-warning">
+            <div class="card text-light bg-dark">
                 <div class="card-header">Agent Login</div>
                 <div class="card-body">
-                    <div class="alert alert-info" role="alert">
+                    <div class="alert alert-secondary" role="alert">
                         ඔබ ආහාර ද්‍රව්‍ය බෙදාහරින ආයතනයක, වෙලදසැලක, සංවිධානයක නියෝජිතයෙක් නම්, මෙහි ලියාපදිංචි වීමට එහි
                         නම, සම්බන්ධ කරගැනීමේ තොරතුරු, පාර්සල් බෙදාහරින ප්‍රදේශ, 071-2396116 අංකයට Whatsapp, Viber, SMS
                         හරහා ලබා දුන් පසු ඔබට මෙයට ඇතුල්වීමට අවශ්‍ය username / password අප විසින් ඔබට එවනු ඇත.
