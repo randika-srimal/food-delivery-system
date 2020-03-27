@@ -20,10 +20,17 @@ class WelcomeController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['search']);
     }
 
-    public function index()
+    public function search()
+    {
+        $deliveryAreaNames = Area::pluck('name')->toArray();
+
+        return view('search', ['areas' => json_encode($deliveryAreaNames)]);
+    }
+
+    public function dashboard()
     {
         if (Auth::user()->id == 1) {
             return view('systemAdminDashboard');;

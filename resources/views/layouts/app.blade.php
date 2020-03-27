@@ -8,21 +8,21 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <meta property="og:url"
-        content="https://help.area51projects.com/login" />
+    <meta property="og:url" content="https://help.area51projects.com/login" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Stay Home, Stay Safe - We will back you." />
-    <meta property="og:description" content="Search delivery food packs in your area and order them directly from suppliers." />
-    <meta property="og:image"
-        content="{{ asset('images/share-image.png') }}" />
-        <meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="fb:app_id" content="895981437519151" />
+    <meta property="og:description"
+        content="Search delivery food packs in your area and order them directly from suppliers." />
+    <meta property="og:image" content="{{ asset('images/share-image.png') }}" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="fb:app_id" content="895981437519151" />
 
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="{{ asset('js/app.js') }}">
+
     </script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -33,6 +33,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('styles')
     <link href="{{ asset('css/system.css') }}" rel="stylesheet">
 </head>
 
@@ -41,7 +42,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Food Delivery System
+                    Find Packs
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -53,6 +54,14 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
+                            <a class="nav-link" href="{{route('search')}}">Search <span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('dashboard')}}" data-target="#about-us-modal">Dashboard
+                                <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)" data-toggle="modal"
                                 data-target="#about-us-modal">About Us <span class="sr-only">(current)</span></a>
                         </li>
