@@ -20,9 +20,9 @@ class SocialController extends Controller
             $getInfo = FacadesSocialite::driver($provider)->user();
             $user = $this->createUser($getInfo, $provider);
             auth()->login($user);
-            return redirect()->to('/');   //code...
+            return redirect()->to('/dashboard');   //code...
         } catch (\Throwable $th) {
-            return redirect()->to('/login')->with(['status' => 'danger', 'message' => 'Facebook Login Failed']);
+            return redirect()->to('/home')->with(['status' => 'danger', 'message' => 'Facebook Login Failed']);
         }
     }
     function createUser($getInfo, $provider)

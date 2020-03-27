@@ -10,4 +10,9 @@ class Area extends Model
     {
         return $this->belongsToMany(User::class, 'user_area');
     }
+
+    public function flyers()
+    {
+        return $this->belongsToMany(Flyer::class, 'flyer_area');
+    }
 }

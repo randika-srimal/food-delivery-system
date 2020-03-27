@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index')->name('welcome');
+Route::get('/', 'WelcomeController@search')->name('search');
+
+Route::get('/dashboard', 'WelcomeController@dashboard')->name('dashboard');
 
 Auth::routes();
 
@@ -24,6 +26,12 @@ Route::prefix('packs')->group(function () {
     Route::post('order', 'OrderController@addOrder')->name('packs.addOrder');
     Route::get('area', 'PackController@getPacksInArea')->name('packs.getPacksInArea');
     Route::post('{id}/delete', 'PackController@deletePack')->name('packs.delete');
+});
+
+Route::prefix('flyers')->group(function () {
+    Route::get('', 'FlyersController@getFlyersInArea')->name('flyers.getFlyersInArea');
+    Route::post('', 'FlyersController@addFlyer')->name('flyers.add');
+    Route::post('upload', 'FlyersController@tryUpload')->name('flyers.tryUpload');
 });
 
 Route::prefix('orders')->group(function () {
