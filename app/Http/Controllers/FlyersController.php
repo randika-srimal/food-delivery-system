@@ -2,25 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Area;
+use App\City;
 use App\Flyer;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class FlyersController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth')->except(['getFlyersInArea']);
-    }
-
     public function addFlyer(Request $request)
     {
         try {
             $flyer = new Flyer();
 
             $flyer->file_name = $request->flyer_file_name;
-            $flyer->price = $request->price;
+            $flyer->details = $request->details;
             $flyer->save();
 
             $areasArray = explode(',', $request->areas);
@@ -28,19 +23,14 @@ class FlyersController extends Controller
             foreach ($areasArray as $areaName) {
                 $capitalizedAreaName = ucwords($areaName);
 
-                $area = Area::where('name', $capitalizedAreaName)->first();
+                $area = City::where('name_en', $capitalizedAreaName)->first();
 
-                if ($area === null) {
-                    $area = new Area();
-                    $area->name = $capitalizedAreaName;
-
-                    $area->save();
+                if ($area) {
+                    $flyer->cities()->save($area);
                 }
-
-                $flyer->areas()->save($area);
             }
 
-            return redirect()->back()->with(['status' => 'success', 'message' => 'Flyer saved Successfully']);
+            return redirect()->back()->with(['status' => 'success', 'message' => 'Pack saved Successfully']);
         } catch (\Throwable $e) {
 
             throw $e;
@@ -79,7 +69,7 @@ class FlyersController extends Controller
         if ($request->area == "All"){
             $flyers = Flyer::orderBy('id', 'desc')->take(15)->get()->toArray();
         }else{
-            $area = Area::where('name', $request->area)->first();
+            $area = City::where('name_en', $request->area)->first();
             $flyers = $area->flyers->toArray();
         }
 

@@ -15,17 +15,8 @@ Route::get('/', 'WelcomeController@search')->name('search');
 
 Route::get('/dashboard', 'WelcomeController@dashboard')->name('dashboard');
 
-Auth::routes();
-
 Route::get('privacy-policy', function () {
     return view('privacyPolicy');
-});
-
-Route::prefix('packs')->group(function () {
-    Route::post('', 'PackController@addPack')->name('packs.add');
-    Route::post('order', 'OrderController@addOrder')->name('packs.addOrder');
-    Route::get('area', 'PackController@getPacksInArea')->name('packs.getPacksInArea');
-    Route::post('{id}/delete', 'PackController@deletePack')->name('packs.delete');
 });
 
 Route::prefix('flyers')->group(function () {
@@ -33,14 +24,3 @@ Route::prefix('flyers')->group(function () {
     Route::post('', 'FlyersController@addFlyer')->name('flyers.add');
     Route::post('upload', 'FlyersController@tryUpload')->name('flyers.tryUpload');
 });
-
-Route::prefix('orders')->group(function () {
-    Route::post('{id}/{status}', 'OrderController@changeStatus')->name('orders.changeStatus');
-});
-
-Route::prefix('users')->group(function () {
-    Route::post('add', 'UserController@addUser')->name('users.add');
-});
-
-Route::get('auth/redirect/{provider}', 'SocialController@redirect');
-Route::get('callback/{provider}', 'SocialController@callback');

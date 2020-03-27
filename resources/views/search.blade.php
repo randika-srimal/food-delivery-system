@@ -1,19 +1,7 @@
 @extends('layouts.app')
 
-@section('styles')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css" rel="stylesheet">
-@endsection
 @section('content')
 <div class="container">
-    <div class="alert text-dark alert-info alert-dismissible fade show" role="alert">
-        ඔබ ප්‍රදේශයේ භාණ්ඩ මලු මෙම වෙබ් අඩවියට ඇතුලත් කිරීමට එම පාර්සල් වල මිල ගණන් සහ අඩංගු ද්‍රව්‍ය සහ විස්තර ඇතුලත්
-        ජායාරුප අප වෙත එවන්න.
-        <br />
-        Email - <a href="mailto:email2randika@gmail.com?Subject=Packs" target="_top">email2randika@gmail.com</a>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
     @if (session('status'))
     <div class="alert alert-{{ session('status') }} alert-dismissible fade show" role="alert">
         {{ session('message') }}
@@ -39,8 +27,4 @@
     </div>
 </div>
 <input type="hidden" id="delivery-area-names" value="{{$areas}}" />
-@endsection
-@section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
-<script src="{{ asset('js/search.js') }}"></script>
 @endsection

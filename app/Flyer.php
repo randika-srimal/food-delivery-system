@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Flyer extends Model
 {
-    public function areas()
+    public function cities()
     {
-        return $this->belongsToMany(Area::class, 'flyer_area');
+        return $this->belongsToMany(City::class, 'flyer_city');
     }
 }
