@@ -54,13 +54,13 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="{{route('search')}}">Search <span
+                            <a class="nav-link" href="{{route('search')}}"><i fa fa-search></i> Search <span
                                     class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="{{route('dashboard')}}" data-target="#about-us-modal">Dashboard
                                 <span class="sr-only">(current)</span></a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0)" data-toggle="modal"
                                 data-target="#about-us-modal">About Us <span class="sr-only">(current)</span></a>
@@ -68,7 +68,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    {{-- <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
@@ -93,7 +93,7 @@
                             </div>
                         </li>
                         @endguest
-                    </ul>
+                    </ul> --}}
                 </div>
             </div>
         </nav>

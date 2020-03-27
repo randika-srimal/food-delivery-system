@@ -11,7 +11,7 @@
     </div>
     @endif
     <div class="row justify-content-center">
-        <div class="col-md-5 mb-2">
+        {{-- <div class="col-md-5 mb-2">
             <div class="card text-light bg-dark">
                 <div class="card-header">Customer Login</div>
                 <div class="card-body">
@@ -23,16 +23,11 @@
                             class="fa fa-facebook"></i> Login with Facebook</a>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <div class="col-md-5">
             <div class="card text-light bg-dark">
                 <div class="card-header">Agent Login</div>
                 <div class="card-body">
-                    <div class="alert alert-secondary" role="alert">
-                        ඔබ ආහාර ද්‍රව්‍ය බෙදාහරින ආයතනයක, වෙලදසැලක, සංවිධානයක නියෝජිතයෙක් නම්, මෙහි ලියාපදිංචි වීමට එහි
-                        නම, සම්බන්ධ කරගැනීමේ තොරතුරු, පාර්සල් බෙදාහරින ප්‍රදේශ, 071-2396116 අංකයට Whatsapp, Viber, SMS
-                        හරහා ලබා දුන් පසු ඔබට මෙයට ඇතුල්වීමට අවශ්‍ය username / password අප විසින් ඔබට එවනු ඇත.
-                    </div>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
