@@ -74,17 +74,16 @@ class FlyersController extends Controller
 
     public function getFlyersInArea(Request $request)
     {
-        $area = Area::where('name', $request->area)->first();
-        // $packs = [];
+        $flyers=[];
 
-        // foreach ( as $flyer) {
-        //         $pack['user'] = [
-        //             'name' => $user->name,
-        //             'contact_details' => $user->agent_contact_details,
-        //         ];
-        //         array_push($packs, $pack);
-        // }
+        if ($request->area == "All"){
+            $flyers = Flyer::orderBy('id', 'desc')->take(15)->get()->toArray();
+        }else{
+            $area = Area::where('name', $request->area)->first();
+            $flyers = $area->flyers->toArray();
+        }
 
-        return response()->json($area->flyers->toArray());
+
+        return response()->json($flyers);
     }
 }
