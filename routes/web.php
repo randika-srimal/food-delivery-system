@@ -26,6 +26,10 @@ Route::prefix('flyers')->group(function () {
     Route::post('{id}/delete', 'FlyersController@deleteFlyer')->name('flyers.tryDelete');
 });
 
+Route::prefix('cities')->group(function () {
+    Route::post('generate-share-image', 'CitiesController@generateShareImage')->name('cities.generateShareImage');
+});
+
 Auth::routes([
     'register' => false, // Registration Routes...
     'reset' => false, // Password Reset Routes...

@@ -1,6 +1,5 @@
 $(function() {
     $("#spinner").hide();
-    $("#select-pack-alert").hide();
     var authUserId = $("#auth-user-id").val();
 
     function getUrlParameter(sParam) {
@@ -28,19 +27,20 @@ $(function() {
     var NoResultsLabel = "Location not found, Try any other nearest location";
     var jsonParsedAreaNames = JSON.parse(availableTags);
 
-    function appendCards(areaName = "All") {
+    function appendCards(areaName) {
+        var cityName = areaName ? areaName : "";
+
         $("#card-columns").empty();
-        $("#select-pack-alert").hide();
         $("#spinner").show();
-        $("#area_name").val(areaName);
-        $.get("flyers?area=" + areaName, function(packs) {
+        $("#share-btn").hide();
+        $("#area_name").val(cityName);
+        $.get("flyers?area=" + cityName, function(packs) {
+            $("#share-btn").show();
             $("#spinner").hide();
             if (packs.length > 0) {
                 $("#no-packs-warning").addClass("d-none");
-                $("#select-pack-alert").show();
             } else {
                 $("#no-packs-warning").removeClass("d-none");
-                $("#select-pack-alert").hide();
             }
 
             packs.forEach(pack => {
@@ -88,12 +88,13 @@ $(function() {
                 $("#card-columns").append(card);
             });
         }).fail(function() {
+            $("#share-btn").show();
             $("#spinner").hide();
             console.error("Something Went Wrong");
         });
     }
 
-    appendCards();
+    appendCards(getUrlParameter("city"));
 
     $("#search-input").autocomplete({
         autoFocus: true,
@@ -213,6 +214,41 @@ $(function() {
             },
             function(response) {
                 $("#pack-wrap-" + packId).slideUp(500);
+            }
+        ).fail(function() {
+            console.error("Something Went Wrong");
+        });
+    });
+
+    $("#share-btn").click(function() {
+        var cityName = $("#search-input").val();
+
+        $.post(
+            {
+                url: "cities/generate-share-image",
+                data: {
+                    city_name: cityName
+                },
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                }
+            },
+            function(response) {
+                FB.ui(
+                    {
+                        method: "share",
+                        href:
+                            cityName.length > 0
+                                ? "https://" +
+                                  window.location.hostname +
+                                  "?city=" +
+                                  cityName
+                                : "https://" + window.location.hostname
+                    },
+                    function(response) {
+                        console.error("Shared successfully");
+                    }
+                );
             }
         ).fail(function() {
             console.error("Something Went Wrong");

@@ -3,16 +3,25 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <meta property="og:url" content="https://help.area51projects.com/login" />
+
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Stay Home, Stay Safe - We will back you." />
-    <meta property="og:description" content="Search delivery food packs in your area." />
+    @if($city)
+    <meta property="og:url" content="{{Request::url().'?city='.$city->name_en}}" />
+    <meta property="og:title" content="{{$city->name_si.' ප්‍රදේශයේ ඔබට නිවසටම ගෙන්වා ගත හැකි භාණ්ඩ හා සේවා.'}}" />
+    <meta property="og:description"
+        content="{{$city->name_si.' ප්‍රදේශයේ ඔබට නිවසටම ගෙන්වා ගත හැකි භාණ්ඩ හා සේවා.'}}" />
+    <meta property="og:image" content="{{ asset('images/city-shares/city-share-'.$city->id.'.png') }}" />
+    @else
+    <meta property="og:url" content="{{Request::url()}}" />
+    <meta property="og:title" content="{{'ඔබට නිවසටම ගෙන්වා ගත හැකි භාණ්ඩ හා සේවා.'}}" />
+    <meta property="og:description" content="{{'ඔබට නිවසටම ගෙන්වා ගත හැකි භාණ්ඩ හා සේවා.'}}" />
     <meta property="og:image" content="{{ asset('images/share-image.png') }}" />
+    @endif
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="fb:app_id" content="895981437519151" />
@@ -39,6 +48,17 @@
 </head>
 
 <body>
+    <div id="fb-root"></div>
+    <script src="https://connect.facebook.net/en_US/sdk.js"></script>
+    <script>
+        FB.init({
+          appId   : 895981437519151,
+          status  : true,
+          xfbml   : true,
+          version : 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+    </script>
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
@@ -74,81 +94,8 @@
         <main class="py-4">
             @yield('content')
         </main>
-
-        <div class="modal fade" id="about-us-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">About Us</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body text-center">
-                        <p>This was developed for as a support to fight Covid-19 outbreak in Sri Lanka. Stay Home Stay
-                            Safe. Feel free to suggest bugs, features and
-                            improvements.</p>
-                        Developed by <a href="https://www.facebook.com/randika.srimal" target="blank">Randika
-                            Srimal</a>.
-                        <br />
-                        Contact <a href="mailto:email2randika@gmail.com?Subject=About%20Food%20Delivery%20System"
-                            target="_top">email2randika@gmail.com</a>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="add-pack-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add Pack</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        @if(Auth::guest())
-                        <div class="text-center">
-                            <p>Please login with Facebook.</p>
-                            <a href="{{ url('/auth/redirect/facebook') }}" class="btn btn-primary"><i
-                                    class="fa fa-facebook"></i> Facebook Login</a>
-                        </div>
-                        @else
-                        <form method="POST" id="save-flyer-form" action="{{ route('flyers.add') }}">
-                            @csrf
-                            <div class="file-loading">
-                                <input type="file" accept="image/*" id="file"
-                                    data-upload-url="{{route('flyers.tryUpload')}}">
-                            </div>
-                            <input required type="hidden" id="flyer-file-name" name="flyer_file_name">
-                            <br />
-                            <div class="form-group">
-                                <label for="exampleFormControlTextarea1">Delivery Areas :</label>
-                                <br />
-                                <input required type="text" id="delivery-areas" name="areas">
-                            </div>
-                            <div class="form-group">
-                                <label>Details :</label>
-                                <textarea class="form-control" name="details"
-                                    placeholder="Price, Contact Details, etc"></textarea>
-                            </div>
-                            <button type="button" id="submit-flyer-btn"
-                                class="btn btn-primary btn-block">Submit</button>
-                        </form>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
+        @include('components.aboutUsModal')
+        @include('components.addPackModal')
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

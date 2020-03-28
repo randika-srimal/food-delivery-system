@@ -73,7 +73,7 @@ class FlyersController extends Controller
     {
         $flyers = [];
 
-        if ($request->area == "All") {
+        if ($request->area == "") {
             $flyers = Flyer::orderBy('id', 'desc')->with('user')->take(15)->get()->toArray();
         } else {
             $city = City::where('name_en', $request->area)->first();

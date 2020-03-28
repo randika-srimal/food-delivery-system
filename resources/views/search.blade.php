@@ -12,20 +12,25 @@
     @endif
     <div class="row">
         <div class="col-lg-12">
-            <input id="search-input" autofocus placeholder="Search by location to find packs near you"
-                class="form-control">
+            <input id="search-input" value="{{$city?$city->name_en:''}}" autofocus
+                placeholder="Search by location to find packs near you" class="form-control">
             <br />
+            <button type="button" id="share-btn" class="mb-3 btn btn-md btn-info">
+                <i class="fa fa-facebook"></i> Share on Facebook
+            </button>
             <div class="text-center" id="spinner">
                 <i class="fa fa-3x fa-spinner fa-spin"></i>
                 <p>Searching...</p>
             </div>
             <div class="alert alert-warning d-none" id="no-packs-warning">No Packs :(.</div>
-            <div class="text-left mb-3 text-dark bg-secondry" id="select-pack-alert">Click on the pack to zoom.</div>
             <div class="card-columns" id="card-columns">
             </div>
         </div>
     </div>
 </div>
+<a href="javascript:void(0)" data-toggle="modal" data-target="#add-pack-modal" class="float">
+    <i class="fa fa-plus my-float"></i>
+</a>
 <input type="hidden" id="delivery-area-names" value="{{$areas}}" />
-<input type="hidden" id="auth-user-id" value="{{Auth::check()?Auth::user()->id:null}}"/>
+<input type="hidden" id="auth-user-id" value="{{Auth::check()?Auth::user()->id:null}}" />
 @endsection
