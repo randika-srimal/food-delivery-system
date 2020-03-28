@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-lg-12">
             <input id="search-input" value="{{$city?$city->name_en:''}}" autofocus
-                placeholder="Search by location to find packs near you" class="form-control">
+                placeholder="Search by city to find services" class="form-control">
             <br />
             <button type="button" id="share-btn" class="mb-3 btn btn-md btn-info">
                 <i class="fa fa-facebook"></i> Share on Facebook

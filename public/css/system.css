@@ -67,10 +67,10 @@
 .float {
     display: none;
     position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 40px;
-    right: 40px;
+    width: 50px;
+    height: 50px;
+    bottom: 15px;
+    right: 15px;
     background-color: #28b62c;
     color: #fff;
     border-radius: 50px;
@@ -91,10 +91,10 @@
 
 .my-float {
     font-size: 1.5rem;
-    margin-top: 19px;
+    margin-top: 15px;
 }
 
-@media (min-width: 16em) {
+@media (max-width: 34em) {
     .card-columns {
         -webkit-column-count: 2;
         -moz-column-count: 2;
@@ -102,7 +102,7 @@
     }
 }
 
-@media (min-width: 48em) {
+@media (min-width: 34em) {
     .card-columns {
         -webkit-column-count: 3;
         -moz-column-count: 3;
