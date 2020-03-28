@@ -64,6 +64,36 @@
     border-radius: 50%;
 }
 
+.float {
+    display: none;
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #28b62c;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+}
+
+@media (max-width: 992px) {
+    .float {
+        display: block !important;
+    }
+}
+
+.float:hover {
+    color: #fff;
+    box-shadow: 3px 3px 4px #999;
+}
+
+.my-float {
+    font-size: 1.5rem;
+    margin-top: 19px;
+}
+
 @media (min-width: 16em) {
     .card-columns {
         -webkit-column-count: 2;
