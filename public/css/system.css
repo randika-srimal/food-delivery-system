@@ -18,7 +18,7 @@
     overflow-y: scroll;
 }
 
-.swal2-html-container{
+.swal2-html-container {
     white-space: pre-wrap;
 }
 
@@ -29,11 +29,11 @@
     font-size: 1rem;
 }
 
-.ui-autocomplete{
+.ui-autocomplete {
     z-index: 9999 !important;
 }
 
-.file-thumbnail-footer{
+.file-thumbnail-footer {
     display: none !important;
 }
 
@@ -53,11 +53,18 @@
     float: none;
 }
 
-.krajee-default.file-preview-frame .kv-file-content{
+.krajee-default.file-preview-frame .kv-file-content {
     margin: auto;
 }
 
-@media (min-width: 34em) {
+.avatar {
+    vertical-align: middle;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+@media (min-width: 16em) {
     .card-columns {
         -webkit-column-count: 2;
         -moz-column-count: 2;

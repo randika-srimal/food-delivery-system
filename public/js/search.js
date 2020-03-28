@@ -1,7 +1,28 @@
 $(function() {
     $("#spinner").hide();
-    $("#no-packs-warning").hide();
     $("#select-pack-alert").hide();
+    var authUserId = $("#auth-user-id").val();
+
+    function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split("&"),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split("=");
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined
+                    ? true
+                    : decodeURIComponent(sParameterName[1]);
+            }
+        }
+    }
+
+    if (getUrlParameter("action") == "openAddPackDialog") {
+        $("#add-pack-modal").modal("toggle");
+    }
 
     var availableTags = $("#delivery-area-names").val();
     var NoResultsLabel = "Location not found, Try any other nearest location";
@@ -15,16 +36,19 @@ $(function() {
         $.get("flyers?area=" + areaName, function(packs) {
             $("#spinner").hide();
             if (packs.length > 0) {
-                $("#no-packs-warning").hide();
+                $("#no-packs-warning").addClass("d-none");
                 $("#select-pack-alert").show();
             } else {
-                $("#no-packs-warning").show();
+                $("#no-packs-warning").removeClass("d-none");
                 $("#select-pack-alert").hide();
             }
 
             packs.forEach(pack => {
                 var card = "";
-                card += '<div class="card text-dark bg-default pack">';
+                card +=
+                    '<div class="card text-dark bg-default pack" id="pack-wrap-' +
+                    pack.id +
+                    '">';
                 card +=
                     '<a href="/images/flyers/' +
                     pack.file_name +
@@ -35,6 +59,12 @@ $(function() {
                     '" alt="Pack">';
                 card += "</a>";
                 card += '<div class="card-body" style="padding: 0.8rem;">';
+                card +=
+                    '<h6 class="card-subtitle mb-2 text-muted"><img class="avatar" src="http://graph.facebook.com/' +
+                    pack.user.provider_id +
+                    '/picture?type=small"> ' +
+                    pack.user.name +
+                    "</h6>";
                 if (pack.details) {
                     card +=
                         '<div class="card-text" style="font-weight:bold;">' +
@@ -44,15 +74,22 @@ $(function() {
                     card +=
                         '<div class="card-text" style="font-weight:bold;">No Details</div>';
                 }
-
                 card += "</div>";
+                if (authUserId == pack.user_id) {
+                    card +=
+                        '<div class="card-footer"><button pack-id="' +
+                        pack.id +
+                        '" title="Delete" type="button" class="btn btn-md btn-danger pack-delete-btn">';
+                    card += '<i class="fa fa-trash"></i></button></div>';
+                }
+
                 card += "</div>";
 
                 $("#card-columns").append(card);
             });
         }).fail(function() {
             $("#spinner").hide();
-            alert("error");
+            console.error("Something Went Wrong");
         });
     }
 
@@ -158,9 +195,27 @@ $(function() {
         }
     });
 
-    $(".alert")
+    $(".main-alert")
         .fadeTo(2000, 500)
         .slideUp(500, function() {
-            $(".alert").slideUp(500);
+            $(".main-alert").slideUp(500);
         });
+
+    $(document).on("click", ".pack-delete-btn", function() {
+        var packId = $(this).attr("pack-id");
+
+        $.post(
+            {
+                url: "flyers/" + packId + "/delete",
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+                }
+            },
+            function(response) {
+                $("#pack-wrap-" + packId).slideUp(500);
+            }
+        ).fail(function() {
+            console.error("Something Went Wrong");
+        });
+    });
 });
