@@ -10,4 +10,9 @@ class Flyer extends Model
     {
         return $this->belongsToMany(City::class, 'flyer_city');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
