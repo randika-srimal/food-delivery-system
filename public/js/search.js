@@ -30,6 +30,8 @@ $(function() {
     function appendCards(areaName) {
         var cityName = areaName ? areaName : "";
 
+        $("#share-btn-text").text(cityName.length>0?'Share '+cityName+' Results on Facebook':'Share on Facebook')
+
         $("#card-columns").empty();
         $("#spinner").show();
         $("#share-btn").hide();

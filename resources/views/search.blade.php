@@ -16,7 +16,7 @@
                 placeholder="Search by city to find services" class="form-control">
             <br />
             <button type="button" id="share-btn" class="mb-3 btn btn-md btn-info">
-                <i class="fa fa-facebook"></i> Share on Facebook
+                <i class="fa fa-facebook"></i> <span id="share-btn-text">Share on Facebook</span>
             </button>
             <div class="text-center" id="spinner">
                 <i class="fa fa-3x fa-spinner fa-spin"></i>
