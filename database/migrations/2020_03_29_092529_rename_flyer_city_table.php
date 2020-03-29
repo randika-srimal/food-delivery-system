@@ -22,8 +22,8 @@ class RenameFlyerCityTable extends Migration
          Schema::rename('flyer_city', 'offer_city');
 
          Schema::table('offer_city', function (Blueprint $table) {
-            $table->foreign('offer_id')->references('id')->on('offers');
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('offer_id')->references('id')->on('offers')->onDelete('cascade');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
          });
     }
 
