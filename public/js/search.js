@@ -52,11 +52,11 @@ $(function() {
                     pack.id +
                     '">';
                 card +=
-                    '<a href="/images/flyers/' +
+                    '<a href="/images/offers/' +
                     pack.file_name +
                     '" data-lightbox="roadtrip">';
                 card +=
-                    '<img class="card-img-top" src="/images/flyers/thumb-' +
+                    '<img class="card-img-top" src="/images/offers/thumb-' +
                     pack.file_name +
                     '" alt="Pack">';
                 card += "</a>";
