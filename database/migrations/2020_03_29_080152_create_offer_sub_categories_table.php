@@ -16,6 +16,7 @@ class CreateOfferSubCategoriesTable extends Migration
         Schema::create('offer_sub_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name_en');
+            $table->string('css_class')->default('sub-category-default');
             $table->unsignedBigInteger('main_category_id');
             $table->timestamps();
         });

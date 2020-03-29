@@ -70,7 +70,7 @@ $(function() {
                     card +=
                         '<div class="card-text" style="font-weight:bold;">' +
                         (pack.details?pack.details+'<br/>':'') +
-                        '<span class="badge badge-primary sub-category-badge">'+pack.offer_sub_category.name_en+'</span>'
+                        '<span class="badge sub-category-badge '+pack.offer_sub_category.css_class+'">'+pack.offer_sub_category.name_en+'</span>'
                         "</div>";
                 card += "</div>";
                 if (authUserId == pack.user_id) {
