@@ -62,7 +62,7 @@ $(function() {
                 card += "</a>";
                 card += '<div class="card-body" style="padding: 0.8rem;">';
                 card +=
-                    '<h6 class="card-subtitle mb-2 text-muted"><img class="avatar" src="http://graph.facebook.com/' +
+                    '<h6 class="card-subtitle mb-2 text-muted"><img class="avatar" src="https://graph.facebook.com/' +
                     pack.user.provider_id +
                     '/picture?type=small"> ' +
                     pack.user.name +
