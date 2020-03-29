@@ -44,7 +44,7 @@
         rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.min.css" rel="stylesheet">
     <link href="{{ asset('js/tags-input/dist/jquery.tagsinput-revisited.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/system.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/system.css?version=1') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -107,7 +107,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.8/themes/fa/theme.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/js/lightbox.min.js"></script>
     <script src="{{ asset('js/tags-input/dist/jquery.tagsinput-revisited.min.js') }}"></script>
-    <script src="{{ asset('js/search.js') }}"></script>
+    <script src="{{ asset('js/search.js?version=1') }}"></script>
 </body>
 
 </html>
