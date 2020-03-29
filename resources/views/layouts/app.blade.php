@@ -76,7 +76,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="btn btn-success" href="javascript:void(0)" data-toggle="modal"
-                                data-target="#add-pack-modal"><i class="fa fa-plus" aria-hidden="true"></i> Add Pack
+                                data-target="#add-pack-modal"><i class="fa fa-plus" aria-hidden="true"></i> Add Offer
                                 <span class="sr-only">(current)</span></a>
                         </li>
 
@@ -95,7 +95,7 @@
             @yield('content')
         </main>
         @include('components.aboutUsModal')
-        @include('components.addPackModal')
+        @include('components.addOfferModal')
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

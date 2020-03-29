@@ -13,17 +13,17 @@
 
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', 'WelcomeController@search')->name('search');
+Route::get('/', 'HomeController@search')->name('search');
 
 Route::get('privacy-policy', function () {
     return view('privacyPolicy');
 });
 
-Route::prefix('flyers')->group(function () {
-    Route::get('', 'FlyersController@getFlyersInArea')->name('flyers.getFlyersInArea');
-    Route::post('', 'FlyersController@addFlyer')->name('flyers.add');
-    Route::post('upload', 'FlyersController@tryUpload')->name('flyers.tryUpload');
-    Route::post('{id}/delete', 'FlyersController@deleteFlyer')->name('flyers.tryDelete');
+Route::prefix('offers')->group(function () {
+    Route::get('', 'OffersController@getOffersInCity')->name('offers.getOffersInCity');
+    Route::post('', 'OffersController@saveOffer')->name('offers.saveOffer');
+    Route::post('upload', 'OffersController@saveOfferImage')->name('offers.saveOfferImage');
+    Route::post('{id}/delete', 'OffersController@deleteOffer')->name('offers.deleteOffer');
 });
 
 Route::prefix('cities')->group(function () {

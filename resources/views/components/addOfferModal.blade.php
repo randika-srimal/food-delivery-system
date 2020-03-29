@@ -3,13 +3,12 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Pack</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Add Offer</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-
                 @if(Auth::guest())
                 <div class="text-center">
                     <p>Please login with Facebook.</p>
@@ -17,13 +16,24 @@
                             class="fa fa-facebook"></i> Facebook Login</a>
                 </div>
                 @else
-                <form method="POST" id="save-flyer-form" action="{{ route('flyers.add') }}">
+                <form method="POST" id="save-flyer-form" action="{{ route('offers.saveOffer') }}">
                     @csrf
                     <div class="file-loading">
-                        <input type="file" accept="image/*" id="file" data-upload-url="{{route('flyers.tryUpload')}}">
+                        <input type="file" accept="image/*" id="file"
+                            data-upload-url="{{route('offers.saveOfferImage')}}">
                     </div>
                     <input required type="hidden" id="flyer-file-name" name="flyer_file_name">
                     <br />
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Category :</label>
+                        <br />
+                        <select class="form-control" name="sub_category_id" required>
+                            <option value="" selected disabled>Select Category</option>
+                            @foreach ($subCategories as $subCategory)
+                            <option value="{{$subCategory->id}}">{{$subCategory->name_en}}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Delivery Areas :</label>
                         <br />
