@@ -77,7 +77,7 @@ class FlyersController extends Controller
             $flyers = Flyer::orderBy('id', 'desc')->with('user')->take(15)->get()->toArray();
         } else {
             $city = City::where('name_en', $request->area)->first();
-            $flyers = $city->flyers->load('user')->toArray();
+            $flyers = $city->flyers->sortByDesc('id')->load('user')->values();
         }
 
 
