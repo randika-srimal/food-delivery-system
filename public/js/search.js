@@ -67,15 +67,11 @@ $(function() {
                     '/picture?type=small"> ' +
                     pack.user.name +
                     "</h6>";
-                if (pack.details) {
                     card +=
                         '<div class="card-text" style="font-weight:bold;">' +
-                        pack.details +
+                        (pack.details?pack.details+'<br/>':'') +
+                        '<span class="badge badge-primary sub-category-badge">'+pack.offer_sub_category.name_en+'</span>'
                         "</div>";
-                } else {
-                    card +=
-                        '<div class="card-text" style="font-weight:bold;">No Details</div>';
-                }
                 card += "</div>";
                 if (authUserId == pack.user_id) {
                     card +=

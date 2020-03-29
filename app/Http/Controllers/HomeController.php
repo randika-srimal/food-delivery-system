@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\City;
+use App\OfferSubCategory;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
 
-class WelcomeController extends Controller
+class HomeController extends Controller
 {
     /**
      * Show the welcome page.
@@ -22,6 +23,7 @@ class WelcomeController extends Controller
     public function search(Request $request)
     {
         $deliveryAreaNames = City::pluck('name_en')->toArray();
+        $subCategories = OfferSubCategory::all();
 
         if ($request->input('city')) {
             $city = City::where('name_en', $request->input('city'))->first();
@@ -34,6 +36,7 @@ class WelcomeController extends Controller
         }
 
         return view('search', [
+            'subCategories' => $subCategories,
             'areas' => json_encode($deliveryAreaNames),
             'city' => $city
         ]);

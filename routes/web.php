@@ -13,7 +13,7 @@
 
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', 'WelcomeController@search')->name('search');
+Route::get('/', 'HomeController@search')->name('search');
 
 Route::get('privacy-policy', function () {
     return view('privacyPolicy');

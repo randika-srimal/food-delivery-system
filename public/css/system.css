@@ -94,6 +94,12 @@
     margin-top: 15px;
 }
 
+.sub-category-badge {
+    height: 25px;
+    font-size: 0.8rem;
+    padding: 0.4em;
+}
+
 @media (min-width: 30em) {
     .card-columns {
         -webkit-column-count: 3;

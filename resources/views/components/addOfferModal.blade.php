@@ -9,7 +9,6 @@
                 </button>
             </div>
             <div class="modal-body">
-
                 @if(Auth::guest())
                 <div class="text-center">
                     <p>Please login with Facebook.</p>
@@ -20,14 +19,20 @@
                 <form method="POST" id="save-flyer-form" action="{{ route('offers.saveOffer') }}">
                     @csrf
                     <div class="file-loading">
-                        <input type="file" accept="image/*" id="file" data-upload-url="{{route('offers.saveOfferImage')}}">
+                        <input type="file" accept="image/*" id="file"
+                            data-upload-url="{{route('offers.saveOfferImage')}}">
                     </div>
                     <input required type="hidden" id="flyer-file-name" name="flyer_file_name">
                     <br />
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Category :</label>
                         <br />
-                        <input required type="number" name="sub_category_id">
+                        <select class="form-control" name="sub_category_id" required>
+                            <option value="" selected disabled>Select Category</option>
+                            @foreach ($subCategories as $subCategory)
+                            <option value="{{$subCategory->id}}">{{$subCategory->name_en}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1">Delivery Areas :</label>

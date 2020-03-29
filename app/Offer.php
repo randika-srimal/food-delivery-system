@@ -18,7 +18,7 @@ class Offer extends Model
 
     public function offerSubCategory()
     {
-        return $this->belongsTo(OfferSubCategory::class);
+        return $this->belongsTo(OfferSubCategory::class,'sub_category_id');
     }
 
     public static function boot()

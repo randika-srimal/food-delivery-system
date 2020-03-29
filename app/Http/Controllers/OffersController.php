@@ -75,17 +75,17 @@ class OffersController extends Controller
         $offers = [];
 
         if ($request->city == "") {
-            $offers = Offer::orderBy('id', 'desc')->with('user')->take(15)->get()->toArray();
+            $offers = Offer::orderBy('id', 'desc')->with(['user','offerSubCategory'])->take(15)->get()->toArray();
         } else {
             $city = City::where('name_en', $request->city)->first();
-            $offers = $city->offers->sortByDesc('id')->load('user')->values();
+            $offers = $city->offers->sortByDesc('id')->load('user','offerSubCategory')->values();
         }
 
 
         return response()->json($offers);
     }
 
-    public function deleteOffer(Request $request,$id)
+    public function deleteOffer(Request $request, $id)
     {
         $offer = Offer::find($id);
         $offer->delete();
