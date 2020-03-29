@@ -36,7 +36,7 @@ $(function() {
         $("#spinner").show();
         $("#share-btn").hide();
         $("#area_name").val(cityName);
-        $.get("flyers?area=" + cityName, function(packs) {
+        $.get("offers?city=" + cityName, function(packs) {
             $("#share-btn").show();
             $("#spinner").hide();
             if (packs.length > 0) {
@@ -209,7 +209,7 @@ $(function() {
 
         $.post(
             {
-                url: "flyers/" + packId + "/delete",
+                url: "offers/" + packId + "/delete",
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
                 }

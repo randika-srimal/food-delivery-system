@@ -7,9 +7,9 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class City extends Model
 {
-    public function flyers()
+    public function offers()
     {
-        return $this->belongsToMany(Flyer::class, 'flyer_city');
+        return $this->belongsToMany(Offer::class, 'offer_city');
     }
 
     public function generateShareimage()
