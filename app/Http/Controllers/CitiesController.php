@@ -9,6 +9,7 @@ class CitiesController extends Controller
 {
     public function generateShareImage(Request $request)
     {
+        echo "omitting closing tag"
         try {
             if ($request->city_name) {
                 $city = City::where('name_en', $request->city_name)->first();
