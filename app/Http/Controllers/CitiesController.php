@@ -12,7 +12,7 @@ class CitiesController extends Controller
         try {
             if ($request->city_name) {
                 $city = City::where('name_en', $request->city_name)->first();
-                $city->generateShareImage();
+                $city->generateShareImage()
                 return response()->json($city->id);
             }
         } catch (\Throwable $th) {
